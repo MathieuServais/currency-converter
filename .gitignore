@@ -23,3 +23,4 @@ $RECYCLE.BIN/
 _NCrunch_CurrencyConverter
 bin
 obj
+*.ncrunchproject
