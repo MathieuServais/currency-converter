@@ -5,28 +5,20 @@ using System.Linq;
 namespace CurrencyConverter
 {
     /// <summary>
-    /// Convert currency with the smallest number of convertion (with Dijkstra)
+    /// Convert currency with the smallest number of convertion (with A*)
     /// </summary>
     public class CurrencyConverter
     {
-        /// <summary>
-        /// Input amount that is to be converted
-        /// </summary>
+        /// <summary>Input amount that is to be converted</summary>
         public double InputAmount { get; set; }
 
-        /// <summary>
-        /// Input currency
-        /// </summary>
+        /// <summary>Input currency</summary>
         public Currency InputCurrency { get; set; }
 
-        /// <summary>
-        /// Ouput currency
-        /// </summary>
+        /// <summary>Ouput currency</summary>
         public Currency OutputCurrency { get; set; }
 
-        /// <summary>
-        /// Proxy for parse input data and format output data
-        /// </summary>
+        /// <summary>Proxy for parse input data and format output data</summary>
         private InputOutputProxy _inputOutputProxy;
 
         /// <summary>
@@ -38,7 +30,7 @@ namespace CurrencyConverter
         {
             PrepareInputData(inputLineList);
 
-            CalculateBestPathConversionWithDijkstra();
+            CalculateBestPathConversion();
 
             if (!HasValidResult()) return "ERROR";
             var outputAmount = CalculateChange(InputAmount, InputCurrency, OutputCurrency);
@@ -46,7 +38,7 @@ namespace CurrencyConverter
         }
 
         /// <summary>
-        /// Initialize data from input for Dijkstra algo (draw the graph between currencies)
+        /// Initialize data from input for algo execution (draw the graph between currencies)
         /// </summary>
         /// <param name="lineList">input flux</param>
         private void PrepareInputData(List<string> lineList)
@@ -61,14 +53,15 @@ namespace CurrencyConverter
         }
 
         /// <summary>
-        /// Execute Dijkstra algorithm for find the best path for convert the input amout to output currency.
+        /// Execute A* algorithm for find the best path for convert the input amout to output currency.
         /// After calcule, each currency know the best previous currency (for change).
         /// </summary>
-        private void CalculateBestPathConversionWithDijkstra()
+        private void CalculateBestPathConversion()
         {
             var currencyQueue = new Queue<Currency>();
             currencyQueue.Enqueue(InputCurrency);
             InputCurrency.Previous = InputCurrency;
+
             while (currencyQueue.Count > 0)
             {
                 var actualCurrency = currencyQueue.Dequeue();
@@ -93,7 +86,7 @@ namespace CurrencyConverter
         }
 
         /// <summary>
-        /// Return error if Dijkstra don't path
+        /// Return error if A* don't find valid path
         /// </summary>
         private bool HasValidResult()
         {
@@ -114,7 +107,7 @@ namespace CurrencyConverter
         }
 
         /// <summary>
-        /// Reverse path for calculate (because Dijkstra is target to original with currency.previous).
+        /// Reverse path for calculate (because target to original with currency.previous).
         /// For the calcule (with round) we need original to target.
         /// </summary>
         /// <param name="origineCurrency">Original currency</param>
