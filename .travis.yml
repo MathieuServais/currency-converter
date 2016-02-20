@@ -4,7 +4,7 @@ mono:
   - latest
 install:
   - nuget restore CurrencyConverter.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -Version 3.0.1 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release CurrencyConverter.sln /tv:12.0
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CurrencyConverter.Specs/bin/Release/CurrencyConverter.Specs.dll
+  - mono ./testrunner/NUnit.Runners.3.0.1/tools/nunit-console.exe ./CurrencyConverter.Specs/bin/Release/CurrencyConverter.Specs.dll
