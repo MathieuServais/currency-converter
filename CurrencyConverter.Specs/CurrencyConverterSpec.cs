@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace CurrencyConverter.UT
+namespace CurrencyConverter.Specs
 {
     [TestFixture]
     public class CurrencyConverterSpec

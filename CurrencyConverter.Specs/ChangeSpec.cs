@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace CurrencyConverter.UT
+namespace CurrencyConverter.Specs
 {
     [TestFixture]
     public class ChangeSpec
