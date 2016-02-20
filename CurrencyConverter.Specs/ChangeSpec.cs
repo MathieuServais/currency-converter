@@ -5,8 +5,8 @@ namespace CurrencyConverter.Specs
     [TestFixture]
     public class ChangeSpec
     {
-        private Currency _originalCurrency = new Currency("EUR");
-        private Currency _targetCurrency = new Currency("CHF");
+        private readonly Currency _originalCurrency = new Currency("EUR");
+        private readonly Currency _targetCurrency = new Currency("CHF");
 
         [Test]
         public void Change_ShouldHaveOriginalCurrency()

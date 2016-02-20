@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CurrencyConverter
 {
@@ -80,7 +81,7 @@ namespace CurrencyConverter
                     targetCurrency.Previous = actualCurrency;
 
                     // full path find => stop
-                    if (targetCurrency == OutputCurrency)
+                    if (Equals(targetCurrency, OutputCurrency))
                     {
                         currencyQueue.Clear();
                         break;
@@ -106,16 +107,10 @@ namespace CurrencyConverter
         /// <param name="origineCurrency">actual currency</param>
         /// <param name="targetCurrency">target currency</param>
         /// <returns>target amount</returns>
-        private double CalculateChange(double amount, Currency origineCurrency, Currency targetCurrency)
+        private static double CalculateChange(double amount, Currency origineCurrency, Currency targetCurrency)
         {
             var rateListOrdered = RateListOrdered(origineCurrency, targetCurrency);
- 
-            foreach(var rate in rateListOrdered)
-            {
-                amount = Math.Round(amount * rate, 4);
-            }
-
-            return amount;
+            return rateListOrdered.Aggregate(amount, (current, rate) => Math.Round(current*rate, 4));
         }
 
         /// <summary>
@@ -125,11 +120,11 @@ namespace CurrencyConverter
         /// <param name="origineCurrency">Original currency</param>
         /// <param name="targetCurrency">Target currency</param>
         /// <returns>Ordoned exchange rate</returns>
-        private List<double> RateListOrdered(Currency origineCurrency, Currency targetCurrency)
+        private static IEnumerable<double> RateListOrdered(Currency origineCurrency, Currency targetCurrency)
         {
             var rateListOrdered = new List<double>();
             var currency = targetCurrency;
-            while (currency != origineCurrency)
+            while (!Equals(currency, origineCurrency))
             {
                 rateListOrdered.Add(currency.GetRateWithPrevious());
                 currency = currency.Previous;

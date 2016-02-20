@@ -11,7 +11,7 @@ namespace CurrencyConverter
         /// <summary>
         /// Cache
         /// </summary>
-        private List<Currency> _currencyListCache;
+        private readonly List<Currency> _currencyListCache;
 
         /// <summary>
         /// Constructor
@@ -29,12 +29,10 @@ namespace CurrencyConverter
         public Currency Get(string currencyIsoCode)
         {
             var currency = _currencyListCache.FirstOrDefault(_ => _.IsoCode == currencyIsoCode);
-            if (currency == null)
-            {
-                currency = new Currency(currencyIsoCode);
-                _currencyListCache.Add(currency);
-            }
+            if (currency != null) return currency;
 
+            currency = new Currency(currencyIsoCode);
+            _currencyListCache.Add(currency);
             return currency;
         }
     }

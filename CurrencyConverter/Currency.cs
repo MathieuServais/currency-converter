@@ -11,7 +11,7 @@ namespace CurrencyConverter
         /// <summary>
         /// ISO currency names (3 caractères)
         /// </summary>
-        public string IsoCode { get; private set; }
+        public string IsoCode { get; }
 
         /// <summary>
         /// Previous currency for best path on Dijkstra resolution
@@ -42,7 +42,7 @@ namespace CurrencyConverter
             var currencyList = new List<Currency>();
             foreach(var change in ChangeList)
             {
-                var currency = change.GetNext(this);
+                change.GetNext(this);
                 currencyList.Add(change.GetNext(this));
             }
 

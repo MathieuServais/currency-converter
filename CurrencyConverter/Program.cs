@@ -5,15 +5,17 @@ namespace CurrencyConverter
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // Read input paramters
-            var lineParamList = new List<string>();
-            lineParamList.Add(Console.ReadLine());
-            lineParamList.Add(Console.ReadLine());
+            var lineParamList = new List<string>
+            {
+                Console.ReadLine(),
+                Console.ReadLine()
+            };
 
             // Number of line we need to read
-            long numLineInput = 0;
+            long numLineInput;
             long.TryParse(lineParamList[1], out numLineInput);
             for (long i =0; i < numLineInput; i++)
                 lineParamList.Add(Console.ReadLine());

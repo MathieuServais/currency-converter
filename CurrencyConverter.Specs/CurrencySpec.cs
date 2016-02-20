@@ -17,7 +17,7 @@ namespace CurrencyConverter.Specs
         {
             var currency = new Currency("EUR");
             var currencyTarget = new Currency("CHF");
-            var change = new Change(currency, currencyTarget, 1);
+            new Change(currency, currencyTarget, 1);
 
             var actual = currency.GetCurrencyListToChange();
 

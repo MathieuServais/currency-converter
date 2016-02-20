@@ -10,17 +10,17 @@ namespace CurrencyConverter
         /// <summary>
         /// Original currency for exchange
         /// </summary>
-        public Currency OriginalCurrency { get; private set; }
+        public Currency OriginalCurrency { get; }
 
         /// <summary>
         /// Target currencu for exchange 
         /// </summary>
-        public Currency TargetCurrency { get; private set; }
+        public Currency TargetCurrency { get; }
 
         /// <summary>
         /// Rate for convertion (original to target)
         /// </summary>
-        private double _rate;
+        private readonly double _rate;
 
         /// <summary>
         /// Contructor exchange rate
@@ -53,8 +53,8 @@ namespace CurrencyConverter
         /// <returns>True if currency is used, false otherwise</returns>
         public bool HasCurrency(Currency currency)
         {
-            return OriginalCurrency == currency ||
-                   TargetCurrency == currency;
+            return Equals(OriginalCurrency, currency) ||
+                   Equals(TargetCurrency, currency);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace CurrencyConverter
         /// <returns>other currency in relation for this change</returns>
         public Currency GetNext(Currency currente)
         {
-            return OriginalCurrency == currente ? TargetCurrency : OriginalCurrency;
+            return Equals(OriginalCurrency, currente) ? TargetCurrency : OriginalCurrency;
         }
 
         /// <summary>
@@ -74,10 +74,7 @@ namespace CurrencyConverter
         /// <returns></returns>
         public double GetRateTo(Currency currency)
         {
-            if (currency == TargetCurrency)
-                return _rate;
-            else
-                return Math.Round(1 / _rate, 4);
+            return Equals(currency, TargetCurrency) ? _rate : Math.Round(1 / _rate, 4);
         }
 
         #region Equals
@@ -89,7 +86,7 @@ namespace CurrencyConverter
 
             return change.OriginalCurrency.Equals(OriginalCurrency) &&
                    change.TargetCurrency.Equals(TargetCurrency) &&
-                   change._rate == _rate;
+                   Math.Abs(change._rate - _rate) < 0.0001;
         }
 
         public override int GetHashCode()
