@@ -73,7 +73,7 @@ namespace CurrencyConverter
                 var actualCurrency = currencyQueue.Dequeue();
                 foreach (var targetCurrency in actualCurrency.GetCurrencyListToChange())
                 {
-                    // If currency have already best find best path
+                    // If currency have already find best path
                     if (targetCurrency.Previous != null)
                         continue;
 
