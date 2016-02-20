@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace CurrencyConverter.UT
 {
-    [TestClass]
+    [TestFixture]
     public class CurrencyConverterSpec
     {
-        [TestMethod]
+        [Test]
         public void Convert_ShouldReturnNumber_WithOneChangeOrderedValid()
         {
             var lines = new List<string>
@@ -21,7 +21,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual("2", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Convert_ShouldReturnNumber_WithOneChangeInvertedValid()
         {
             var lines = new List<string>
@@ -36,7 +36,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual("2", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Convert_ShouldReturnNumber_WithDataOfConsigne()
         {
             var lines = new List<string>
@@ -56,7 +56,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual("59033", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Convert_ShouldFindTheSmallestPath()
         {
             var lines = new List<string>
@@ -77,7 +77,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual("2", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Convert_ShouldThrowError_WhenNoWay()
         {
             var lines = new List<string>

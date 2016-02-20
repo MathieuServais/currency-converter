@@ -1,18 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace CurrencyConverter.UT
 {
-    [TestClass]
+    [TestFixture]
     public class CurrencySpec
     {
-        [TestMethod]
+        [Test]
         public void Currency_ShouldHaveCodeIso()
         {
             var currency = new Currency("EUR");
             Assert.AreEqual("EUR", currency.IsoCode);
         }
 
-        [TestMethod]
+        [Test]
         public void GetCurrencyListToChange_ShouldReturnEligibleCurrency()
         {
             var currency = new Currency("EUR");
@@ -24,7 +24,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(currencyTarget, actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void GetRateWithPrevious_ShouldReturnChangeRate_WithPreviousCurrency()
         {
             var currency = new Currency("EUR");

@@ -1,36 +1,35 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace CurrencyConverter.UT
 {
-    [TestClass]
+    [TestFixture]
     public class ChangeSpec
     {
         private Currency _originalCurrency = new Currency("EUR");
         private Currency _targetCurrency = new Currency("CHF");
 
-        [TestMethod]
+        [Test]
         public void Change_ShouldHaveOriginalCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);
             Assert.AreEqual(_originalCurrency, change.OriginalCurrency);
         }
 
-        [TestMethod]
+        [Test]
         public void Change_ShouldHaveTargetCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);
             Assert.AreEqual(_targetCurrency, change.TargetCurrency);
         }
 
-        [TestMethod]
+        [Test]
         public void AddCurrencyMapping_ShouldCreateMappingWithOriginalCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);
             Assert.AreEqual(_originalCurrency.ChangeList[0], change);
         }
 
-        [TestMethod]
+        [Test]
         public void AddCurrencyMapping_ShouldCreateMappingWithTargetCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);
@@ -38,7 +37,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(_targetCurrency, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetNext_ShouldReturnOriginalCurrency_WhenCurrentisTargetCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);
@@ -46,7 +45,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(_originalCurrency, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetRateTo_ShouldReturnRate_WithTargetCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);
@@ -54,7 +53,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(0.8297, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetRateTo_ShouldReturnInvertedRate_WithOriginalCurrency()
         {
             var change = new Change(_originalCurrency, _targetCurrency, 1.2053);

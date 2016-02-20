@@ -2,3 +2,9 @@ language: csharp
 solution: CurrencyConverter.sln
 mono:
   - latest
+install:
+  - nuget restore CurrencyConverter.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release CurrencyConverter.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CurrencyConverter.Specs/bin/Release/CurrencyConverter.Specs.dll

@@ -24,3 +24,4 @@ _NCrunch_CurrencyConverter
 bin
 obj
 *.ncrunchproject
+packages

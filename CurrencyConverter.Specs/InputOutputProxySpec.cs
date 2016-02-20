@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace CurrencyConverter.UT
 {
-    [TestClass]
+    [TestFixture]
     public class InputOutputProxySpec
     {
-        [TestMethod]
+        [Test]
         public void GetInputCurrency_ShouldReturnCurrency_Line1Col1()
         {
             // Given
@@ -23,7 +23,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(new Currency("EUR"), actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetInputAmount_ShouldReturnAmount_Line1Col2()
         {
             var input = new List<string>
@@ -37,7 +37,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(550, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetInputAmount_ShouldReturnAmount_Line1Col3()
         {
             var input = new List<string>
@@ -51,7 +51,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(new Currency("JPY"), actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetNumberChange_ShouldReturnNumberOfChange_Line2()
         {
             var input = new List<string>
@@ -66,7 +66,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(1, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetChangeList_ShouldReturnOneChange_Line3()
         {
             var input = new List<string>
@@ -82,7 +82,7 @@ namespace CurrencyConverter.UT
             Assert.AreEqual(expected, actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void FormatResult_ShouldReturnInterString()
         {
             var proxy = new InputOutputProxy(null);
