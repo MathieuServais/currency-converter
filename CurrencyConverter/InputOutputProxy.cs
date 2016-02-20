@@ -7,6 +7,19 @@ namespace CurrencyConverter
     /// <summary>
     /// Matching between user interface (Console) and the fonction of currencyConvert.
     /// Prepare data for call the converter (object and graph for input data).
+    /// Input format:
+    /// <code>
+    /// InputCurrency;InputAmount;OuputCurrency
+    /// NumberChangeLine
+    /// OriginalCurrency;TargetCurrency;ExchangeRate
+    /// OriginalCurrency;TargetCurrency;ExchangeRate
+    /// OriginalCurrency;TargetCurrency;ExchangeRate
+    /// ...
+    /// </code>
+    /// Outpur format:
+    /// <code>
+    /// OutputAmount
+    /// </code>
     /// </summary>
     public class InputOutputProxy
     {
@@ -23,8 +36,8 @@ namespace CurrencyConverter
         private const int CHANGE_END_CURRENCY_COL = 1;
         private const int CHANGE_RATE_COL = 2;
 
-        private List<string> _inputLineList;
-        private CurrencyFlyweight _currencyFlyweight;
+        private readonly List<string> _inputLineList;
+        private readonly CurrencyFlyweight _currencyFlyweight;
 
         public InputOutputProxy(List<string> inputLineList)
         {
@@ -62,7 +75,7 @@ namespace CurrencyConverter
             var changeList = new List<Change>(numberChange);
 
             var changeLineMax = CHANGE_LINE_START + numberChange;
-            for (int i = CHANGE_LINE_START; i < changeLineMax; i++)
+            for (var i = CHANGE_LINE_START; i < changeLineMax; i++)
                 changeList.Add(GetChangeFromLine(_inputLineList[i]));
 
             return changeList;
