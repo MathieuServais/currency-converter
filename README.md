@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mercadis/currency-converter.svg?branch=master)](https://travis-ci.org/mercadis/currency-converter)
+
 # What is Currency Converter
 
 Currency Converter is a converter of amount currency to another currency.( 1 EUR => 1,2345 USD).
