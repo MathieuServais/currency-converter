@@ -78,7 +78,7 @@ namespace CurrencyConverter.Specs
             var parser = new InputOutputProxy(input);
             var actual = parser.GetChangeList();
 
-            var expected = new Exchange(new Currency("EUR"), new Currency("JPY"), 0.9661);
+            var expected = new Exchange(new Currency("EUR"), new Currency("JPY"), (decimal)0.9661);
             Assert.AreEqual(expected, actual[0]);
         }
 
@@ -86,7 +86,7 @@ namespace CurrencyConverter.Specs
         public void FormatResult_ShouldReturnInterString()
         {
             var proxy = new InputOutputProxy(null);
-            var actual = proxy.FormatResult(1.9999);
+            var actual = proxy.FormatResult((decimal)1.9999);
 
             Assert.AreEqual("2", actual);
         }
