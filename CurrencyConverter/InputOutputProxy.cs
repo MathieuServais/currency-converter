@@ -69,10 +69,10 @@ namespace CurrencyConverter
             return int.Parse(numberChangeString, CultureInfo.InvariantCulture);
         }
 
-        public List<Change> GetChangeList()
+        public List<Exchange> GetChangeList()
         {
             var numberChange = GetNumberChange();
-            var changeList = new List<Change>(numberChange);
+            var changeList = new List<Exchange>(numberChange);
 
             var changeLineMax = CHANGE_LINE_START + numberChange;
             for (var i = CHANGE_LINE_START; i < changeLineMax; i++)
@@ -81,7 +81,7 @@ namespace CurrencyConverter
             return changeList;
         }
 
-        private Change GetChangeFromLine(string line)
+        private Exchange GetChangeFromLine(string line)
         {
             var input = line.Split(';');
 
@@ -89,7 +89,7 @@ namespace CurrencyConverter
             var endCurrency = _currencyFlyweight.Get(input[CHANGE_END_CURRENCY_COL]);
             var rate = double.Parse(input[CHANGE_RATE_COL], CultureInfo.InvariantCulture);
 
-            return new Change(beginCurrency, endCurrency, rate);
+            return new Exchange(beginCurrency, endCurrency, rate);
         }
 
         public string FormatResult(double outputAmount)

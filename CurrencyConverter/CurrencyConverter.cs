@@ -67,8 +67,7 @@ namespace CurrencyConverter
                 var actualCurrency = currencyQueue.Dequeue();
                 foreach (var targetCurrency in actualCurrency.GetCurrencyListToChange())
                 {
-                    // If currency have already find best path
-                    if (targetCurrency.Previous != null)
+                    if (targetCurrency.HasBestPathForExchange())
                         continue;
 
                     targetCurrency.Previous = actualCurrency;
@@ -90,7 +89,7 @@ namespace CurrencyConverter
         /// </summary>
         private bool HasValidResult()
         {
-            return OutputCurrency.Previous != null;
+            return OutputCurrency.HasBestPathForExchange();
         }
 
         /// <summary>

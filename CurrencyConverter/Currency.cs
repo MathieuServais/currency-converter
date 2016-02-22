@@ -21,7 +21,7 @@ namespace CurrencyConverter
         /// <summary>
         /// List of change with this currency
         /// </summary>
-        public List<Change> ChangeList { get; set; }
+        public List<Exchange> ChangeList { get; set; }
 
         /// <summary>
         /// Constructor with iso normes
@@ -30,7 +30,7 @@ namespace CurrencyConverter
         public Currency(string isoCode)
         {
             IsoCode = isoCode;
-            ChangeList = new List<Change>();
+            ChangeList = new List<Exchange>();
         }
 
         /// <summary>
@@ -56,6 +56,14 @@ namespace CurrencyConverter
         public double GetRateWithPrevious()
         {
             return ChangeList.FirstOrDefault(_ => _.HasCurrency(Previous)).GetRateTo(this);
+        }
+
+        /// <summary>
+        /// Return true if we have already find the best path for exchange with this currency
+        /// </summary>
+        public bool HasBestPathForExchange()
+        {
+            return Previous != null; 
         }
 
         #region Equals

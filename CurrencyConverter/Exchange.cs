@@ -5,7 +5,7 @@ namespace CurrencyConverter
     /// <summary>
     /// Exchange rate from currency to another
     /// </summary>
-    public class Change
+    public class Exchange
     {
         /// <summary>
         /// Original currency for exchange
@@ -28,7 +28,7 @@ namespace CurrencyConverter
         /// <param name="originalCurrency">Original currency</param>
         /// <param name="targetCurrency">Target currency</param>
         /// <param name="rate">echange rate</param>
-        public Change(Currency originalCurrency, Currency targetCurrency, double rate)
+        public Exchange(Currency originalCurrency, Currency targetCurrency, double rate)
         {
             OriginalCurrency = originalCurrency;
             TargetCurrency = targetCurrency;
@@ -81,7 +81,7 @@ namespace CurrencyConverter
 
         public override bool Equals(object obj)
         {
-            var change = obj as Change;
+            var change = obj as Exchange;
             if (change == null) return false;
 
             return change.OriginalCurrency.Equals(OriginalCurrency) &&

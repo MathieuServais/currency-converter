@@ -78,7 +78,7 @@ namespace CurrencyConverter.Specs
             var parser = new InputOutputProxy(input);
             var actual = parser.GetChangeList();
 
-            var expected = new Change(new Currency("EUR"), new Currency("JPY"), 0.9661);
+            var expected = new Exchange(new Currency("EUR"), new Currency("JPY"), 0.9661);
             Assert.AreEqual(expected, actual[0]);
         }
 

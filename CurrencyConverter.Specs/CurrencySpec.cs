@@ -17,7 +17,7 @@ namespace CurrencyConverter.Specs
         {
             var currency = new Currency("EUR");
             var currencyTarget = new Currency("CHF");
-            new Change(currency, currencyTarget, 1);
+            new Exchange(currency, currencyTarget, 1);
 
             var actual = currency.GetCurrencyListToChange();
 
@@ -29,9 +29,9 @@ namespace CurrencyConverter.Specs
         {
             var currency = new Currency("EUR");
             var currencyTarget = new Currency("CHF");
-            new Change(currency, currencyTarget, 1.2345);
+            new Exchange(currency, currencyTarget, 1.2345);
             var othercurrency = new Currency("OTH");
-            new Change(othercurrency, currencyTarget, 0.0);
+            new Exchange(othercurrency, currencyTarget, 0.0);
 
             // After Dijkstra
             currencyTarget.Previous = currency;

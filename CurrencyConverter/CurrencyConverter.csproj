@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Change.cs" />
+    <Compile Include="Exchange.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="CurrencyConverter.cs" />
     <Compile Include="CurrencyFlyweight.cs" />

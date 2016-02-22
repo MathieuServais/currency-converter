@@ -51,7 +51,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ChangeSpec.cs" />
+    <Compile Include="ExchangeSpec.cs" />
     <Compile Include="CurrencyConverterSpec.cs" />
     <Compile Include="CurrencySpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
