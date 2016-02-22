@@ -10,17 +10,17 @@ namespace CurrencyConverter
         /// <summary>
         /// Original currency for exchange
         /// </summary>
-        public Currency OriginalCurrency { get; }
+        public Currency OriginalCurrency { get; private set; }
 
         /// <summary>
         /// Target currencu for exchange 
         /// </summary>
-        public Currency TargetCurrency { get; }
+        public Currency TargetCurrency { get; private set; }
 
         /// <summary>
         /// Rate for convertion (original to target)
         /// </summary>
-        private readonly double _rate;
+        private readonly decimal _rate;
 
         /// <summary>
         /// Contructor exchange rate
@@ -28,7 +28,7 @@ namespace CurrencyConverter
         /// <param name="originalCurrency">Original currency</param>
         /// <param name="targetCurrency">Target currency</param>
         /// <param name="rate">echange rate</param>
-        public Exchange(Currency originalCurrency, Currency targetCurrency, double rate)
+        public Exchange(Currency originalCurrency, Currency targetCurrency, decimal rate)
         {
             OriginalCurrency = originalCurrency;
             TargetCurrency = targetCurrency;
@@ -72,7 +72,7 @@ namespace CurrencyConverter
         /// </summary>
         /// <param name="currency">currency to be attained</param>
         /// <returns></returns>
-        public double GetRateTo(Currency currency)
+        public decimal GetRateTo(Currency currency)
         {
             return Equals(currency, TargetCurrency) ? _rate : Math.Round(1 / _rate, 4);
         }
@@ -86,7 +86,7 @@ namespace CurrencyConverter
 
             return change.OriginalCurrency.Equals(OriginalCurrency) &&
                    change.TargetCurrency.Equals(TargetCurrency) &&
-                   Math.Abs(change._rate - _rate) < 0.0001;
+                   Math.Abs(change._rate - _rate) < (decimal)0.0001;
         }
 
         public override int GetHashCode()

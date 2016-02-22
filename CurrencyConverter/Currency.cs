@@ -11,7 +11,7 @@ namespace CurrencyConverter
         /// <summary>
         /// ISO currency names (3 caractères)
         /// </summary>
-        public string IsoCode { get; }
+        public string IsoCode { get; private set; }
 
         /// <summary>
         /// Previous currency for best path on Dijkstra resolution
@@ -53,7 +53,7 @@ namespace CurrencyConverter
         /// return exchange rate to currency of the best path
         /// </summary>
         /// <returns></returns>
-        public double GetRateWithPrevious()
+        public decimal GetRateWithPrevious()
         {
             return ChangeList.FirstOrDefault(_ => _.HasCurrency(Previous)).GetRateTo(this);
         }

@@ -10,7 +10,7 @@ namespace CurrencyConverter
     public class CurrencyConverter
     {
         /// <summary>Input amount that is to be converted</summary>
-        public double InputAmount { get; set; }
+        public decimal InputAmount { get; set; }
 
         /// <summary>Input currency</summary>
         public Currency InputCurrency { get; set; }
@@ -99,7 +99,7 @@ namespace CurrencyConverter
         /// <param name="origineCurrency">actual currency</param>
         /// <param name="targetCurrency">target currency</param>
         /// <returns>target amount</returns>
-        private static double CalculateChange(double amount, Currency origineCurrency, Currency targetCurrency)
+        private static decimal CalculateChange(decimal amount, Currency origineCurrency, Currency targetCurrency)
         {
             var rateListOrdered = RateListOrdered(origineCurrency, targetCurrency);
             return rateListOrdered.Aggregate(amount, (current, rate) => Math.Round(current*rate, 4));
@@ -112,9 +112,9 @@ namespace CurrencyConverter
         /// <param name="origineCurrency">Original currency</param>
         /// <param name="targetCurrency">Target currency</param>
         /// <returns>Ordoned exchange rate</returns>
-        private static IEnumerable<double> RateListOrdered(Currency origineCurrency, Currency targetCurrency)
+        private static IEnumerable<decimal> RateListOrdered(Currency origineCurrency, Currency targetCurrency)
         {
-            var rateListOrdered = new List<double>();
+            var rateListOrdered = new List<decimal>();
             var currency = targetCurrency;
             while (!Equals(currency, origineCurrency))
             {

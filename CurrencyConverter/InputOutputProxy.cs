@@ -51,10 +51,10 @@ namespace CurrencyConverter
             return _currencyFlyweight.Get(codeIso);
         }
 
-        public double GetInputAmount()
+        public decimal GetInputAmount()
         {
             var amountString = _inputLineList[INPUT_AMOUNT_LINE].Split(';')[INPUT_AMOUNT_COL];
-            return double.Parse(amountString, CultureInfo.InvariantCulture);
+            return decimal.Parse(amountString, CultureInfo.InvariantCulture);
         }
 
         public Currency GetOutputCurrency()
@@ -87,12 +87,12 @@ namespace CurrencyConverter
 
             var beginCurrency = _currencyFlyweight.Get(input[CHANGE_BEGIN_CURRENCY_COL]);
             var endCurrency = _currencyFlyweight.Get(input[CHANGE_END_CURRENCY_COL]);
-            var rate = double.Parse(input[CHANGE_RATE_COL], CultureInfo.InvariantCulture);
+            var rate = decimal.Parse(input[CHANGE_RATE_COL], CultureInfo.InvariantCulture);
 
             return new Exchange(beginCurrency, endCurrency, rate);
         }
 
-        public string FormatResult(double outputAmount)
+        public string FormatResult(decimal outputAmount)
         {
             return Math.Round(outputAmount, 0).ToString(CultureInfo.InvariantCulture);
         }
